@@ -4,7 +4,8 @@
   "description": "This is very easy react starter.",
   "main": "index.js",
   "scripts": {
-    "build:dev": "set NODE_ENV=development && webpack --config config/webpack.dev.js --progress --profile"
+    "build:dev": "webpack --config config/webpack.dev.js --progress --profile",
+    "server:dev": "webpack-dev-server --config config/webpack.dev.js --progress --profile --watch --content-base src/"
   },
   "repository": {
     "type": "git",
@@ -61,8 +62,9 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.1",
     "node-sass": "^4.1.1",
-    "postcss-import": "^9.0.0",
+    "postcss-loader": "^1.2.1",
     "rimraf": "^2.5.4",
+    "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.14.0",

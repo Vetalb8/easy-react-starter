@@ -39,15 +39,10 @@ module.exports = function (options) {
         },
         postcss: function () {
             return [
-                require('postcss-import')({addDependencyTo: bundler}),
                 require('autoprefixer')({
                     browsers: [
                         'last 2 versions',
-                        'ie >= 10',
-                        'edge',
-                        'chrome',
-                        'firefox',
-                        'safari'
+                        'ie >= 10'
                     ]
                 })
             ];
@@ -60,6 +55,16 @@ module.exports = function (options) {
             }),
             new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
             new webpack.optimize.OccurrenceOrderPlugin(),
-        ]
+        ],
+        devServer: {
+            port: 3000,
+            host: '0.0.0.0',
+            historyApiFallback: false,
+            watchOptions: {
+                aggregateTimeout: 300,
+                poll: 1000
+            },
+            outputPath: path.resolve(__dirname, '..', 'dist')
+        }
     };
 };
