@@ -1,3 +1,5 @@
+global.Promise = require('bluebird');
+
 const path = require('path');
 const webpack = require('webpack');
 
@@ -11,17 +13,12 @@ module.exports = function (options) {
             'vendor': './src/vendor.js'
         },
         resolve: {
-            root: path.join(__dirname, 'src'),
+            root: path.resolve('./src'),
             modulesDirectories: ['node_modules'],
             extensions: ['', '.js', '.jsx']
         },
         module: {
             loaders: [
-                {
-                    test: /\.js$/,
-                    loader: 'babel-loader',
-                    exclude: [/node_modules/, `${__dirname}/dist`]
-                },
                 {
                     test: /\.css$/,
                     loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
@@ -37,34 +34,34 @@ module.exports = function (options) {
                 { test: /\.(woff|woff2|ttf|eot)/, loader: 'url-loader?limit=1' }
             ]
         },
-        postcss: function () {
-            return [
-                require('autoprefixer')({
-                    browsers: [
-                        'last 2 versions',
-                        'ie >= 10'
-                    ]
-                })
-            ];
-        },
+        postcss: [
+            require('autoprefixer')({
+                browsers: [
+                    'last 2 versions',
+                    'ie >= 10'
+                ]
+            })
+        ],
         plugins: [
             new ExtractTextPlugin('styles.css'),
             new HtmlWebpackPlugin({
-                template: path.resolve('src/index.html'),
+                template: path.resolve('./src/index.html'),
                 chunksSortMode: 'dependency'
             }),
-            new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
+            new webpack.optimize.CommonsChunkPlugin({
+                name: 'vendor'
+            }),
             new webpack.optimize.OccurrenceOrderPlugin(),
         ],
         devServer: {
-            port: 3000,
+            port: 3001,
             host: '0.0.0.0',
             historyApiFallback: false,
             watchOptions: {
                 aggregateTimeout: 300,
                 poll: 1000
             },
-            outputPath: path.resolve(__dirname, '..', 'dist')
+            outputPath: path.resolve('./dist')
         }
     };
 };
