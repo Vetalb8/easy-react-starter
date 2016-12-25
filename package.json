@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "build:dev": "set NODE_ENV='development' && webpack  --debug --config config/webpack.dev.js --progress --profile",
-    "server:dev": "set NODE_ENV='development' && webpack-dev-server --debug --hot --output-pathinfo --watch --colors --inline --content-base src"
+    "build:prod": "webpack --config config/webpack.prod.js  --progress --profile --bail",
+    "clean:dist": "npm run rimraf -- dist",
+    "server:dev": "set NODE_ENV='development' && webpack-dev-server --debug --hot --output-pathinfo --watch --colors --inline --content-base src",
+    "rimraf": "rimraf",
+    "prebuild:dev": "npm run clean:dist",
+    "prebuild:prod": "npm run clean:dist"
   },
   "repository": {
     "type": "git",
@@ -50,6 +55,7 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "bluebird": "^3.4.7",
+    "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.26.1",
     "eslint": "^3.12.2",
     "eslint-loader": "^1.6.1",
@@ -73,6 +79,7 @@
     "webpack": "^1.14.0",
     "webpack-browser-plugin": "^1.0.20",
     "webpack-dev-server": "^1.16.2",
+    "webpack-md5-hash": "0.0.5",
     "webpack-merge": "^2.0.0"
   }
 }

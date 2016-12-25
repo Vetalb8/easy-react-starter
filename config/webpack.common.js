@@ -3,6 +3,7 @@ global.Promise = require('bluebird');
 const path = require('path');
 const webpack = require('webpack');
 
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -47,7 +48,10 @@ module.exports = function () {
             })
         ],
         plugins: [
-            new ExtractTextPlugin('styles.css'),
+            new CopyWebpackPlugin([{
+                from: path.resolve('src/assets'),
+                to: 'assets'
+            }]),
             new HtmlWebpackPlugin({
                 template: path.resolve('./src/index.html'),
                 chunksSortMode: 'dependency'
