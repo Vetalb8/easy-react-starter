@@ -6,8 +6,12 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = function (options) {
+module.exports = function () {
     return {
+        metadata: {
+            title: 'Easy react starter',
+            baseUrl: '/'
+        },
         entry: {
             'app': './src/main.js',
             'vendor': './src/vendor.js'
@@ -52,16 +56,6 @@ module.exports = function (options) {
                 name: 'vendor'
             }),
             new webpack.optimize.OccurrenceOrderPlugin(),
-        ],
-        devServer: {
-            port: 3001,
-            host: '0.0.0.0',
-            historyApiFallback: false,
-            watchOptions: {
-                aggregateTimeout: 300,
-                poll: 1000
-            },
-            outputPath: path.resolve('./dist')
-        }
+        ]
     };
 };
