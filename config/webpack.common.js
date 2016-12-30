@@ -7,7 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = function () {
+module.exports = () => {
     return {
         metadata: {
             title: 'Easy react starter',
@@ -36,7 +36,8 @@ module.exports = function () {
                 { test: /\.jpg$/, loader: 'url-loader?limit=10000&mimetype=image/jpg' },
                 { test: /\.png$/, loader: 'url-loader?limit=10000&mimetype=image/png' },
                 { test: /\.svg/, loader: 'url-loader?limit=26000&mimetype=image/svg+xml' },
-                { test: /\.(woff|woff2|ttf|eot)/, loader: 'url-loader?limit=1' }
+                { test: /\.(woff|woff2|ttf|eot)/, loader: 'url-loader?limit=1' },
+                { test: /\.json$/, loader: 'json' }
             ]
         },
         postcss: [
