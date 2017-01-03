@@ -16,7 +16,7 @@ module.exports = () => {
             baseUrl: '/'
         },
         entry: {
-            'app': './src/main.js',
+            'app': './src/app.js',
             'vendor': './src/vendor.js'
         },
         resolve: {

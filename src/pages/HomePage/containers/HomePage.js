@@ -7,8 +7,6 @@ export default class HomePage extends Component {
     }
 
     render() {
-        return (<div>
-            <HomePageView {...this}/>
-        </div>);
+        return (<HomePageView {...this}/>);
     }
 }
