@@ -1,10 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
+const argv = require('yargs').argv;
 
 const webpackMerge = require('webpack-merge');
 const commonConfig = require('./webpack.common');
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackBrowserPlugin = require('webpack-browser-plugin');
 
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
@@ -16,6 +16,16 @@ const METADATA = webpackMerge(commonConfig().metadata, {
     port: PORT,
     ENV
 });
+
+
+const plugins = [];
+
+if (argv.browser) {
+    plugins.push(new WebpackBrowserPlugin({
+        port: PORT,
+        url: 'http://localhost'
+    }));
+}
 
 module.exports = webpackMerge(commonConfig(), {
     metadata: METADATA,
@@ -31,22 +41,16 @@ module.exports = webpackMerge(commonConfig(), {
         loaders: [
             {
                 test: /\.js$/,
-                loader: 'react-hot!babel!eslint',
+                loader: 'babel!eslint',
                 exclude: [/node_modules/, path.resolve('./dist')]
             }
         ]
     },
     plugins: [
-        new ExtractTextPlugin('styles.css', {
-            allChunks: true
-        }),
         new webpack.DefinePlugin({
             'ENV': JSON.stringify(METADATA.ENV)
         }),
-        new WebpackBrowserPlugin({
-            port: PORT,
-            url: 'http://localhost'
-        })
+        ...plugins
     ],
     devServer: {
         port: PORT,

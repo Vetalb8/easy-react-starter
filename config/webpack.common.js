@@ -7,6 +7,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const ENV = process.env.ENV || process.env.NODE_ENV;
+
 module.exports = () => {
     return {
         metadata: {
@@ -26,18 +28,21 @@ module.exports = () => {
             loaders: [
                 {
                     test: /\.css$/,
-                    loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
+                    loader: ExtractTextPlugin.extract('style', 'css!postcss')
                 },
                 {
                     test: /\.scss/,
-                    loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!sass-loader')
+                    loader: ExtractTextPlugin.extract('style', 'css!postcss!resolve-url!sass?sourceMap')
                 },
-                { test: /\.gif$/, loader: 'url-loader?limit=10000&mimetype=image/gif' },
-                { test: /\.jpg$/, loader: 'url-loader?limit=10000&mimetype=image/jpg' },
-                { test: /\.png$/, loader: 'url-loader?limit=10000&mimetype=image/png' },
-                { test: /\.svg/, loader: 'url-loader?limit=26000&mimetype=image/svg+xml' },
-                { test: /\.(woff|woff2|ttf|eot)/, loader: 'url-loader?limit=1' },
-                { test: /\.json$/, loader: 'json' }
+                { test: /\.gif$/, loader: 'url?limit=10000&mimetype=image/gif' },
+                { test: /\.jpg$/, loader: 'url?limit=10000&mimetype=image/jpg' },
+                { test: /\.png$/, loader: 'url?limit=10000&mimetype=image/png' },
+                { test: /\.svg/, loader: 'url?limit=26000&mimetype=image/svg+xml' },
+                { test: /\.json$/, loader: 'json' },
+                {
+                    test: /\.(woff|woff2|ttf|eot|svg)$/,
+                    loader: 'url?limit=1&name=fonts/[name].[ext]?[hash]'
+                }
             ]
         },
         postcss: [
@@ -49,6 +54,10 @@ module.exports = () => {
             })
         ],
         plugins: [
+            new ExtractTextPlugin('[name].[contenthash:6].bundle.css', {
+                allChunks: true,
+                disable: ENV === 'development'
+            }),
             new CopyWebpackPlugin([{
                 from: path.resolve('src/assets'),
                 to: 'assets'
@@ -61,6 +70,7 @@ module.exports = () => {
                 name: 'vendor'
             }),
             new webpack.optimize.OccurrenceOrderPlugin(),
+            new webpack.NoErrorsPlugin()
         ]
     };
 };

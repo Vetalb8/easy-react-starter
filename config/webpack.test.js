@@ -14,9 +14,7 @@ module.exports = {
                 loader: 'babel',
                 exclude: [/node_modules/, path.resolve('./dist')]
             },
-            { test: /\.css$|\.scss$/, loader: 'null-loader' },
-            { test: /\.jpe?g$|\.gif$|\.png$|\.svg$/i, loader: 'null-loader' },
-            { test: /\.(woff|woff2|ttf|eot)/, loader: 'null-loader' },
+            { test: /\.(css|scss|jpe?g|gif|png|svg|woff|woff2|ttf|eot)$/, loader: 'null' },
             { test: /\.json$/, loader: 'json' }
         ],
         postLoaders: [{
