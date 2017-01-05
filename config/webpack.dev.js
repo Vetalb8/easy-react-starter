@@ -48,7 +48,7 @@ module.exports = webpackMerge(commonConfig(), {
     },
     plugins: [
         new webpack.DefinePlugin({
-            'ENV': JSON.stringify(METADATA.ENV)
+            '__ENV__': JSON.stringify(METADATA.ENV)
         }),
         ...plugins
     ],

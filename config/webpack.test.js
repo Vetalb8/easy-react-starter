@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
     devtool: 'cheap-module-source-map',
@@ -24,6 +25,11 @@ module.exports = {
             loader: 'istanbul-instrumenter'
         }]
     },
+    plugins: [
+        new webpack.DefinePlugin({
+            '__ENV__': JSON.stringify('testing')
+        })
+    ],
     // required for enzyme to work properly
     externals: {
         jsdom: 'window',

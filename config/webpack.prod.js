@@ -35,7 +35,7 @@ module.exports = webpackMerge(commonConfig(), {
     plugins: [
         new WebpackMd5Hash(),
         new webpack.DefinePlugin({
-            'ENV': JSON.stringify(METADATA.ENV)
+            '__ENV__': JSON.stringify(METADATA.ENV)
         }),
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin({

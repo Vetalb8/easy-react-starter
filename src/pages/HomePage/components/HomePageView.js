@@ -1,12 +1,19 @@
-import './HomePage.scss';
 import React from 'react';
 
-const HomePageView = () => {
+import './HomePage.scss';
+
+const HomePageView = (props) => {
+    const { text } = props;
+
     return (
         <div>
-            Home Page
+            {text}
         </div>
     );
+};
+
+HomePageView.propTypes = {
+    text: React.PropTypes.string
 };
 
 export default HomePageView;
