@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import './HomePage.scss';
 
 const HomePageView = (props) => {
-    const { text } = props;
+    const { home } = props;
 
     return (
         <div>
-            {text}
+            {home.text}
         </div>
     );
 };
 
 HomePageView.propTypes = {
-    text: React.PropTypes.string
+    home: PropTypes.any
 };
 
 export default HomePageView;

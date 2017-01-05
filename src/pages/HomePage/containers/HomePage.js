@@ -6,13 +6,13 @@ import { loadHome } from '../../../state/modules/home';
 
 @connect(
     (state /* , ownProps */) => ({
-        text: state.home.text
+        home: state.home
     }),
     dispatch => bindActionCreators({ loadHome }, dispatch))
 export default class HomePage extends Component {
 
     static propTypes = {
-        text: PropTypes.string,
+        home: PropTypes.any,
         loadHome: PropTypes.func.isRequired
     };
 
@@ -21,6 +21,6 @@ export default class HomePage extends Component {
     }
 
     render() {
-        return (<HomePageView text={this.props.text}/>);
+        return (<HomePageView {...this.props}/>);
     }
 }
