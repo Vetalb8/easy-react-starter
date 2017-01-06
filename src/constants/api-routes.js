@@ -1,3 +1,3 @@
 export default {
-    userInfo: `${API_ROOT}/userInfo`
+    loadHomeData: `${API_ROOT}/loadHomeData`
 };
