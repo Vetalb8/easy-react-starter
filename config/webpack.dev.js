@@ -14,7 +14,8 @@ const PORT = process.env.PORT || 3000;
 const METADATA = webpackMerge(commonConfig().metadata, {
     host: HOST,
     port: PORT,
-    ENV
+    ENV,
+    API_ROOT: '/api'
 });
 
 

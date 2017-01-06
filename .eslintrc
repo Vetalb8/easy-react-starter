@@ -398,6 +398,7 @@
   },
   "globals": {
     "$": true,
-    "ga": true
+    "ga": true,
+    "API_ROOT": true
   }
 }

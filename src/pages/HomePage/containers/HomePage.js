@@ -1,14 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import autobind from 'autobind-decorator';
 import HomePageView from '../components/HomePageView';
 import { loadHome } from '../../../state/modules/home';
 
 @connect(
-    (state /* , ownProps */) => ({
+    (state /* , props */) => ({
         home: state.home
     }),
     dispatch => bindActionCreators({ loadHome }, dispatch))
+@autobind
 export default class HomePage extends Component {
 
     static propTypes = {

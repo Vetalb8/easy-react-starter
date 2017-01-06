@@ -9,7 +9,8 @@ const WebpackMd5Hash = require('webpack-md5-hash');
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 
 const METADATA = webpackMerge(commonConfig().metadata, {
-    ENV
+    ENV,
+    API_ROOT: '/api'
 });
 
 module.exports = webpackMerge(commonConfig(), {

@@ -70,7 +70,8 @@ module.exports = () => {
                 name: 'vendor'
             }),
             new webpack.optimize.OccurrenceOrderPlugin(),
-            new webpack.NoErrorsPlugin()
+            new webpack.NoErrorsPlugin(),
+            new webpack.HotModuleReplacementPlugin()
         ]
     };
 };
