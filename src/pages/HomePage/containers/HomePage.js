@@ -5,6 +5,16 @@ import autobind from 'autobind-decorator';
 import HomePageView from '../components/HomePageView';
 import { loadHome } from '../../../actions/home';
 
+const mapStateToProps = (state /* , props */) => {
+    return {
+        home: state.home
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ loadHome }, dispatch);
+};
+
 @connect(
     mapStateToProps,
     mapDispatchToProps)
@@ -22,14 +32,4 @@ export default class HomePage extends Component {
     render() {
         return (<HomePageView {...this.props}/>);
     }
-}
-
-function mapStateToProps(state /* , props */) {
-    return {
-        home: state.home
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ loadHome }, dispatch);
 }
