@@ -20,9 +20,9 @@ module.exports = webpackMerge(commonConfig(), {
     output: {
         publicPath: '/',
         path: path.resolve('./dist'),
-        filename: '[name].[chunkhash:6].bundle.js',
-        sourceMapFilename: '[name].[chunkhash:6].bundle.map',
-        chunkFilename: '[id].[chunkhash:6].chunk.js'
+        filename: '[name].[hash].js',
+        sourceMapFilename: '[name].[hash].map',
+        chunkFilename: '[id].[chunkhash].chunk.js'
     },
     module: {
         loaders: [

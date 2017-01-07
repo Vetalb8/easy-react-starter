@@ -54,7 +54,7 @@ module.exports = () => {
             })
         ],
         plugins: [
-            new ExtractTextPlugin('[name].[contenthash:6].bundle.css', {
+            new ExtractTextPlugin('[name].[contenthash:20].css', {
                 allChunks: true,
                 disable: ENV === 'development'
             }),
