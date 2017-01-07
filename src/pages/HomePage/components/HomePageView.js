@@ -6,9 +6,13 @@ const HomePageView = (props) => {
     const { home } = props;
 
     return (
-        <div>
-            {home.text}
-        </div>
+        <ul>
+            {home.data.children.map((item, i) => {
+                return (
+                    <li key={i}>{item.data.title}</li>
+                );
+            })}
+        </ul>
     );
 };
 

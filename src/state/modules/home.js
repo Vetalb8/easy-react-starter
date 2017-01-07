@@ -7,7 +7,9 @@ export const HOME_SUCCESS = 'home/success';
 export const HOME_ERROR = 'home/error';
 
 const initialState = {
-    text: ''
+    data: {
+        children: []
+    }
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -21,38 +23,49 @@ export default function reducer(state = initialState, action = {}) {
             return {
                 ...state,
                 isFetching: false,
-                text: action.text
+                data: action.data
             };
         case HOME_ERROR:
             return {
                 ...state,
                 isFetching: false,
-                error: action.error,
-                text: action.error.message
+                error: action.error
             };
         default:
             return state;
     }
 }
 
+export function fetchHome() {
+    return {
+        type: HOME_FETCHING
+    };
+}
+
+export function successHome(data) {
+    return {
+        type: HOME_SUCCESS,
+        data
+    };
+}
+
+export function errorHome(error) {
+    return {
+        type: HOME_ERROR,
+        error
+    };
+}
+
 export function loadHome() {
     return (dispatch) => {
-        dispatch({
-            type: HOME_FETCHING
-        });
+        dispatch(fetchHome());
 
         return axios.get(apiRoutes.loadHomeData)
             .then(res => {
-                dispatch({
-                    type: HOME_SUCCESS,
-                    text: res.data
-                });
+                dispatch(successHome(res.data.data));
             })
             .catch(error => {
-                dispatch({
-                    type: HOME_ERROR,
-                    error
-                });
+                dispatch(errorHome(error));
             });
     };
 }
