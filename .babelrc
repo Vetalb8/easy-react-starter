@@ -5,6 +5,7 @@
         "stage-0"
     ],
     "plugins": [
+        "add-module-exports",
         "react-html-attrs",
         "transform-decorators-legacy"
     ]
