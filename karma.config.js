@@ -6,7 +6,7 @@ module.exports = function (config) {
     config.set({
         frameworks: ['jasmine'],
         reporters: ['coverage', 'mocha'],
-        browsers: ['PhantomJS'],
+        browsers: ['Chrome'],
         basePath: '.',
         autoWatch: false,
         singleRun: true,
@@ -24,7 +24,6 @@ module.exports = function (config) {
             require("karma-jasmine"),
             require("karma-coverage"),
             require("karma-mocha-reporter"),
-            require("karma-phantomjs-launcher"),
             require("karma-chrome-launcher"),
             require("karma-sourcemap-loader")
         ],
