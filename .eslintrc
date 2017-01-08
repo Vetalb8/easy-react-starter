@@ -400,6 +400,8 @@
     "$": true,
     "ga": true,
     "API_ROOT": true,
-    "__INITIAL_STATE__": true
+    "__INITIAL_STATE__": true,
+    "__ENV__": true,
+    "__DEVTOOLS__": true
   }
 }

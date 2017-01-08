@@ -18,6 +18,7 @@ const METADATA = webpackMerge(commonConfig().metadata, {
     API_ROOT: '/api'
 });
 
+const devTools = !!argv.devTools || false;
 
 const plugins = [];
 
@@ -49,7 +50,11 @@ module.exports = webpackMerge(commonConfig(), {
     },
     plugins: [
         new webpack.DefinePlugin({
-            '__ENV__': JSON.stringify(METADATA.ENV)
+            '__ENV__': JSON.stringify(METADATA.ENV),
+            '__DEVTOOLS__': devTools,
+            'process.env': {
+                NODE_ENV: JSON.stringify(METADATA.ENV)
+            }
         }),
         ...plugins
     ],

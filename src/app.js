@@ -11,10 +11,31 @@ import './app.scss';
 const store = configureStore(browserHistory, __INITIAL_STATE__);
 const history = syncHistoryWithStore(browserHistory, store);
 
-ReactDOM.render(
-    <Provider store={store}>
-        <Router history={history}>
-            { getRoutes() }
-        </Router>
-    </Provider>
-    , document.getElementById('app'));
+const component = (
+    <Router history={history}>
+        { getRoutes() }
+    </Router>
+);
+
+const container = document.getElementById('app');
+
+if (__DEVTOOLS__ && !window.devToolsExtension) {
+    const DevTools = require('./components/DevTools/DevTools');
+
+    ReactDOM.render(
+        <Provider store={store}>
+            <div>
+                {component}
+                <DevTools />
+            </div>
+        </Provider>,
+        container
+    );
+} else {
+    ReactDOM.render(
+        <Provider store={store}>
+            {component}
+        </Provider>,
+        container
+    );
+}
