@@ -1,4 +1,4 @@
-import { HOME_FETCHING, HOME_SUCCESS, HOME_ERROR } from '../actions/home';
+import { HOME_FETCHING, HOME_SUCCESS, HOME_ERROR } from './actions';
 
 const initialState = {
     data: {

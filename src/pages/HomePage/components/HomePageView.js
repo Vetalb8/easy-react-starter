@@ -3,13 +3,13 @@ import React, { PropTypes } from 'react';
 import './HomePage.scss';
 
 const HomePageView = (props) => {
-    const { home } = props;
+    const { titles } = props;
 
     return (
         <ul>
-            {home.data.children.map((item, i) => {
+            {titles.map((item, i) => {
                 return (
-                    <li key={i}>{item.data.title}</li>
+                    <li key={i}>{item}</li>
                 );
             })}
         </ul>
@@ -17,7 +17,7 @@ const HomePageView = (props) => {
 };
 
 HomePageView.propTypes = {
-    home: PropTypes.any
+    titles: PropTypes.any
 };
 
 export default HomePageView;

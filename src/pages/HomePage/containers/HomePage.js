@@ -3,11 +3,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
 import HomePageView from '../components/HomePageView';
-import { loadHome } from '../../../actions/home';
+import { loadHome, getHomeTitles } from '../../../state/home';
 
 const mapStateToProps = (state /* , props */) => {
     return {
-        home: state.home
+        titles: getHomeTitles(state)
     };
 };
 
@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
 @autobind
 export default class HomePage extends Component {
     static propTypes = {
-        home: PropTypes.any,
+        titles: PropTypes.any,
         loadHome: PropTypes.func.isRequired
     };
 

@@ -1,6 +1,4 @@
-import axios from 'axios';
-
-import apiRoutes from '../constants/api-routes';
+import { getHomeData } from './api';
 
 export const HOME_FETCHING = 'home/fetching';
 export const HOME_SUCCESS = 'home/success';
@@ -31,12 +29,9 @@ export function loadHome() {
     return (dispatch) => {
         dispatch(fetchHome());
 
-        return axios.get(apiRoutes.loadHomeData)
-            .then(res => {
-                dispatch(successHome(res.data.data));
-            })
-            .catch(error => {
-                dispatch(errorHome(error));
-            });
+        return getHomeData(
+            res => dispatch(successHome(res.data.data)),
+            error => dispatch(errorHome(error))
+        );
     };
 }
