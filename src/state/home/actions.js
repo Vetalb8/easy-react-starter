@@ -14,14 +14,15 @@ export function fetchHome() {
 export function successHome(data) {
     return {
         type: HOME_SUCCESS,
-        data
+        payload: data
     };
 }
 
 export function errorHome(error) {
     return {
         type: HOME_ERROR,
-        error
+        payload: error,
+        error: true
     };
 }
 

@@ -1,3 +1,3 @@
-export default function (state = {}) {
-    return state;
-}
+import { createReducer } from '../../utils/reducer';
+
+export default createReducer();

@@ -6,7 +6,7 @@ import { reducer as form } from 'redux-form';
 export default function configureStore(history, initialState = {}) {
     const middleware = [routerMiddleware(history), thunk];
     let fnCreateStore;
-    const reducers = require('./state/reducers');
+    const reducers = require('./reducers');
     const reducer = combineReducers({
         ...reducers,
         form,
@@ -15,7 +15,7 @@ export default function configureStore(history, initialState = {}) {
 
     if (__DEVTOOLS__) {
         const { persistState } = require('redux-devtools');
-        const DevTools = require('./components/DevTools/DevTools');
+        const DevTools = require('../components/DevTools/index');
 
         fnCreateStore = compose(
             applyMiddleware(...middleware),

@@ -7,5 +7,8 @@ import 'react-redux';
 import 'redux';
 import 'redux-thunk';
 import 'redux-form';
+import 'react-intl';
+import 'react-intl/locale-data/en';
+import 'react-intl/locale-data/fr';
 import 'reselect';
 import 'axios';

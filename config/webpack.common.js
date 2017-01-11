@@ -61,6 +61,9 @@ module.exports = () => {
             new CopyWebpackPlugin([{
                 from: path.resolve('src/assets'),
                 to: 'assets'
+            }, {
+                from: path.resolve('src/locales'),
+                to: 'locales'
             }]),
             new HtmlWebpackPlugin({
                 template: path.resolve('./src/index.html'),

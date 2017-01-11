@@ -4,10 +4,8 @@ import { IndexRoute, Route } from 'react-router';
 import App from './components/App';
 import HomePage from './pages/HomePage';
 
-export default () => {
-    return (
-        <Route path='/' component={App}>
-            <IndexRoute component={HomePage}/>
-        </Route>
-    );
-};
+export default (
+    <Route path='/' component={App}>
+        <IndexRoute component={HomePage}/>
+    </Route>
+);

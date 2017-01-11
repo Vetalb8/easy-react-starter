@@ -1,3 +1,4 @@
+import { createReducer } from '../../utils/reducer';
 import { HOME_FETCHING, HOME_SUCCESS, HOME_ERROR } from './actions';
 
 const initialState = {
@@ -6,26 +7,10 @@ const initialState = {
     }
 };
 
-export default function (state = initialState, action = {}) {
-    switch (action.type) {
-        case HOME_FETCHING:
-            return {
-                ...state,
-                isFetching: true
-            };
-        case HOME_SUCCESS:
-            return {
-                ...state,
-                isFetching: false,
-                data: action.data
-            };
-        case HOME_ERROR:
-            return {
-                ...state,
-                isFetching: false,
-                error: action.error
-            };
-        default:
-            return state;
-    }
-}
+const actionHandlers = {
+    [HOME_FETCHING]: () => ({ isFetching: true }),
+    [HOME_SUCCESS]: (_, action) => ({ isFetching: false, data: action.payload }),
+    [HOME_ERROR]: (_, action) => ({ isFetching: false, error: action.payload })
+};
+
+export default createReducer(initialState, actionHandlers);
