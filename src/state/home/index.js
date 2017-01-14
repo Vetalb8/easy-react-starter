@@ -1,4 +1,4 @@
 export * from './actions';
-export * from './api';
-export * from './reducer';
-export * from './selectors';
+export * as api from './api';
+export { default as reducer } from './reducer';
+export * as selectors from './selectors';

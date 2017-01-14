@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { FormattedMessage, FormattedDate, FormattedNumber } from 'react-intl';
+import { Link } from 'react-router';
 
 import './HomePage.scss';
 
@@ -8,6 +9,7 @@ const HomePageView = (props) => {
 
     return (
         <div>
+            <Link to='/p'>To p</Link>
             <p>
                 <FormattedMessage id='hello'/>
             </p>

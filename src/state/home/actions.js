@@ -11,17 +11,17 @@ export function fetchHome() {
     };
 }
 
-export function successHome(data) {
+export function successHome(payload) {
     return {
         type: HOME_SUCCESS,
-        payload: data
+        payload
     };
 }
 
-export function errorHome(error) {
+export function errorHome(payload) {
     return {
         type: HOME_ERROR,
-        payload: error,
+        payload,
         error: true
     };
 }

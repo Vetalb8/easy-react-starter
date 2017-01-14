@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { IntlProvider } from 'react-intl';
-import { Router, browserHistory } from 'react-router';
+import { browserHistory, Router } from 'react-router';
 import configureStore from './state/store';
 import { syncHistoryWithStore } from 'react-router-redux';
 import routes from './app.routes';

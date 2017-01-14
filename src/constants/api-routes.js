@@ -1,5 +1,7 @@
 export default {
     // loadHomeData: `${API_ROOT}/loadHomeData`
     getHomeData: 'https://www.reddit.com/r/reactjs.json',
-    getLocale: '/locale'
+    getLocale: '/locale',
+    loginUrl: '/login',
+    logoutUrl: '/logout'
 };

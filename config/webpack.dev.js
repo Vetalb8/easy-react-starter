@@ -61,7 +61,7 @@ module.exports = webpackMerge(commonConfig(), {
     devServer: {
         port: PORT,
         host: HOST,
-        historyApiFallback: false,
+        historyApiFallback: true,
         watchOptions: {
             aggregateTimeout: 300,
             poll: 1000
